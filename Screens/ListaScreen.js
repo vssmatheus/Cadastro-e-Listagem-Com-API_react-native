@@ -6,13 +6,24 @@ import {
   View, 
   TouchableOpacity,
   ScrollView,
-  Card,
-  CardItem
+  Image
 
 } from 'react-native';
 
 const  films = [];
 export default class ListaScreen extends React.Component {
+
+  static navigationOptions ={
+    tabBarLabel:"Filmes",
+    tabBarIcon:({tintColor})=>(
+      <Image 
+      source={require('../Imagens/filmes.png')}
+      style={{width:22, height:22, tintColor:"#585858"}}>
+
+      </Image>
+    )
+  }
+
   state={
     films:[]
   }
@@ -36,7 +47,12 @@ export default class ListaScreen extends React.Component {
   }
 
     render() {
-      return (
+      return <View style={{
+        flex: 1,
+        justifyContent:'center',
+        alignItems:'center'
+      }
+    }>
         <View style={styles.container}>
           <TouchableOpacity style={styles.botaoLimpar} onPress={()=>this.cadastrar()}>
               <Text style={styles.txtBtn} title="Listar">Lista de Filmes</Text>
@@ -57,7 +73,7 @@ export default class ListaScreen extends React.Component {
             })}
              </ScrollView>
           </View>
-      );
+      </View>
     }
   }
 

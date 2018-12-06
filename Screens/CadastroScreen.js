@@ -5,28 +5,29 @@ import {Platform, Alert,
   View, 
   TextInput,
   TouchableOpacity,
-  ScrollView,
-  RefreshControl
-  
-
+  Image
 } from 'react-native';
 
 export default class CadastroScreen extends Component {
 
+  static navigationOptions ={
+    tabBarLabel:"Cadastro",
+    tabBarIcon:({tintColor})=>(
+      <Image 
+      source={require('../Imagens/cadastro.png')}
+      style={{width:22, height:22, tintColor:"#585858"}}>
+
+      </Image>
+    )
+  }
+
   constructor(props){
     super(props);
     this.state={
-      refreshing: false,
       nome:"",
       email:""
     }
   }
-
-/*   state ={
-    email:'',
-    nome:''
-  }
-  */
   apagarDadosForm = () =>{
     this.setState({
       nome:'',
@@ -70,9 +71,14 @@ export default class CadastroScreen extends Component {
   }
   
     render() {
-      return (     
+      return <View style={{
+        flex: 1,
+        justifyContent:'center',
+        alignItems:'center'
+      }
+    }>
 
-        <View style = {styles.container}>
+    <View style = {styles.container}>
           <View>
             <TextInput style = {styles.entrada} value = {this.state.nome} underlineColorAndroid={'transparent'}
             autoCapitalize="none" onChangeText={(text)=>this.updateValue(text,'nome')} placeholder ='Nome' returnKeyType="go"/>
@@ -100,14 +106,18 @@ export default class CadastroScreen extends Component {
           </View>
 
         </View>
-      );
+
+    </View>    
+
+        
     }
   }
 
 
   const styles = StyleSheet.create({
     container:{
-      flex:1,
+      flex:2,
+      width:'100%',
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: "#FA5858"
@@ -153,18 +163,5 @@ export default class CadastroScreen extends Component {
       color: '#fff'
     }
   });
-
-  /* var url = 'https://example.com/profile';
-      var data = {username: 'example'};
-      
-      ferch (url,{
-        method: 'POST', //or 'PUT'
-        body: JSON.stringfy(data),
-        headers: new Heasers({
-          'Content-Type': 'application/json'
-        })
-      }).then(res => res.json ())
-      .cach(error => console.error('Error:',error))
-      .then(response => console.log('sucess:',response)); */
      
       
