@@ -4,7 +4,11 @@ import {Platform, Alert,
   Text, 
   View, 
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView,
+  RefreshControl
+  
+
 } from 'react-native';
 
 export default class CadastroScreen extends Component {
@@ -12,6 +16,7 @@ export default class CadastroScreen extends Component {
   constructor(props){
     super(props);
     this.state={
+      refreshing: false,
       nome:"",
       email:""
     }
@@ -61,24 +66,12 @@ export default class CadastroScreen extends Component {
 
     // API FALTA CONFIGURAR E UTILIZAR A URL 
 
-/* 
-    var url = 'own-url';
-      
-      ferch (url,{
-        method: 'POST', //or 'PUT'
-        body: JSON.stringfy(collection),
-        headers: new Heasers({
-          'Content-Type': 'application/json'
-        })
-      }).then(res => res.json ())
-      .cach(error => console.error('Error:',error))
-      .then(response => console.log('sucess:',response)); */
-
-    console.warn(collection);
+    //console.warn(collection);
   }
   
     render() {
-      return (
+      return (     
+
         <View style = {styles.container}>
           <View>
             <TextInput style = {styles.entrada} value = {this.state.nome} underlineColorAndroid={'transparent'}
@@ -154,7 +147,9 @@ export default class CadastroScreen extends Component {
       borderRadius: 5
     },
     txtBtn:{
-      fontSize: 25,
+      fontSize: 20,
+      fontFamily:"verdana",
+      fontWeight:'bold',
       color: '#fff'
     }
   });
